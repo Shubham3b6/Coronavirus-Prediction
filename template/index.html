@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title> Prediction</title>
+
+    <link rel="stylesheet" href="{{url_for('static', filename='css/new_style.css')}}">
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+   <style>
+   *{
+  box-sizing:border-box;
+   margin: 0;
+  padding: 0;
+  }
+
+   ul {
+  list-style-type: none;
+  margin: 10px;
+  padding: 10px;
+  overflow: hidden;
+  background-color: #333;
+  box-sizing:border-box;
+  }
+  li {
+  float: left;}
+  li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;}
+  li a:hover {
+  background-color: #111;}
+
+  .active {
+  background-color: #4CAF50;}
+  li {
+  border-right: 1px solid #bbb;}
+
+  li:last-child {
+  border-right: none;}
+
+  </style>
+  </head>
+  <body>
+
+
+  <ul>
+
+      <li><a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/technical-guidance/infection-prevention-and-control">Prevention</a></li>
+      <li><a href="https://www.worldometers.info/coronavirus/country/india/">Current Cases</a></li>
+      <li><a href="https://www.bbc.com/news/health-51048366">Symptoms</a></li>
+      <li style="float:right"><a class="active" href="https://www.who.int/india/emergencies/novel-coronavirus-2019">Emergencies</a></li>
+  </ul>
+
+
+      <marquee direction="up" scrollamount="1" behaviour="alternate">
+          <h3>YES = 1
+          <br>
+              NO = 0
+          <br>
+              Mild = -1
+           <br>
+              STAY SAFE STAY AT HOME
+          </h3>
+      </marquee>
+
+      <marquee class="fix" direction="up" scrollamount="3">
+        <img src="{{ url_for('static',filename='moh.jpg') }}" height="290" width="320">
+      </marquee>
+
+       <marquee direction="right" scrollamount="5" behaviour="alternate">
+          <h4>  Corona Positive  = 1
+          <br>
+                Corona Negative = 0
+          </h4>
+       </marquee>
+
+      <div class="login">
+        <h2>Coronavirus Prediction</h2>
+        <form action="{{ url_for('predict') }}" method="post">
+          <input type="text"  name ='Age'  placeholder=" Age i.e 34" required="required">
+          <input type="text"  name='Fever'placeholder="Fever i.e 102" required="required">
+          <input type="text"  name='BodyPain' placeholder="Body Pain i.e 0 or 1" required="required">
+          <input type="text"  name='RunningNose' placeholder="Running Nose i.e 0 or 1" required="required">
+          <input type="text"  name='Diff. in breathing' placeholder=" Diff.in breathing i.e -1 / 0 / 1 " required="required">
+          <button type="submit" class="btn btn-primary btn-lg">Predict</button>
+        </form>
+
+        <br>
+          {{ prediction_text }}
+
+
+  </body>
+</html>
